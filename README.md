@@ -9,5 +9,5 @@ Agentic Design Patterns : There are four design patterns for developing an Agent
 
 This code is an example of Multi-Agent Collaboration. 
 
-Assumptions : OpenAI key is 
+
 
