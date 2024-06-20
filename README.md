@@ -9,5 +9,6 @@ Agentic Design Patterns : There are four design patterns for developing an Agent
 
 This code is an example of Multi-Agent Collaboration. 
 
-
+Dependency :
+How to install (Pygraphviz)[https://pygraphviz.github.io/documentation/stable/install.html]
 
