@@ -11,7 +11,7 @@ class AgentState(TypedDict):
     messages: Annotated[list[AnyMessage], operator.add]
 
 class Agent:
-    def __init__(self, model, tools,system="") -> None:
+    def __init__(self, model, tools, system="") -> None:
         self.system = system
         
         state_graph = StateGraph(AgentState)
@@ -25,14 +25,13 @@ class Agent:
         state_graph.add_edge("action", "llm")
         state_graph.set_entry_point("llm")
 
-        memory = SqliteSaver.from_conn_string(":memory:")
+        self.memory = SqliteSaver.from_conn_string(":memory:")
 
-        self.graph = state_graph.compile(checkpointer=memory, debug=True)
+        self.graph = state_graph.compile(checkpointer=self.memory, debug=True)
         self.tools = {t.name: t for t in tools}
         # bind tools to llm model
         self.model = model.bind_tools(tools)
 
-        
 
     # llm node
     def call_openai(self, state:AgentState):
